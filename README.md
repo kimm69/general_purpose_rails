@@ -2,7 +2,7 @@
 ***
 ## これだけは必須
 ruby v2.7.2  
-rbenv v2.7.2  
+rbenv v1.2.0-87    
 rails v5.2.8  
 sqlite3  
 Node.js v12.22.9  
