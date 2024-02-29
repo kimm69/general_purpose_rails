@@ -1,0 +1,4 @@
+<p class="title">意見の新規登録</p>
+<!--<div class="top_button"><%= button_to "一覧" , memos_path, method: :get %></div>-->
+<!--一覧と書かれたテキストをクリックするとbooks_pathに遷移する(htmlのhref的なやつ)-->
+<%= render partial: "form", locals: { memo: @memo } %>

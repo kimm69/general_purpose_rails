@@ -1,0 +1,49 @@
+<p class="title">意見の一覧</p>
+<!--<div class="top_button"><%= button_to "新規登録" , new_memo_path, method: :get %></div>-->
+<!--<%=link_to new_memo_path do%><button class="new_button">新規登録</button><%end%>-->
+<%#新規登録という名前でnewアクションを呼び出す%>
+<body>
+<table>
+
+    <thread>
+        <tr>
+            <%#カラム名を表示するときはモデル.human_attribute_name(カラム名のシンボル)で記述する%>
+            <th class="task"><%= Memo.human_attribute_name(:task) %></th>
+            <th class="when"><%= Memo.human_attribute_name(:when) %></th>
+            <th class="name"><%= User.human_attribute_name(:name) %></th>
+        </tr>
+    </thread>
+
+    <tbody>
+        <% @memos.each do |memo| %>
+            <tr>
+                <%# 1件取り出したデータの中身を表示する%>
+                <td><%= memo.task %></td>
+               
+
+            <% if memo.user.present? %>    
+                <td><%= link_to memo.when, memo %></td>
+            <% else %>
+                <td>削除済み</td>
+            <% end %>
+
+            <% if memo.user.present? %>
+                <td><%= User.find(memo.user_id).name %></td>
+            <% else %>
+                <td>削除済み</td>
+            <% end %>
+
+        <% if current_user.admin? %>  
+            <td class="edit"><%= button_to "編集", edit_memo_path(memo), method: :get, class:"edit_delete_btn"%></td>
+            <td class="delete"><%= button_to "削除",  memo, method: :delete,class:"edit_delete_btn" %></td>  
+        <% elsif memo.user_id == current_user.id %>
+            <td class="edit"><%= button_to "編集", edit_memo_path(memo), method: :get, class:"edit_delete_btn"%></td>
+            <td class="delete"><%= button_to "削除",  memo, method: :delete, class:"edit_delete_btn" %></td>
+            
+            <% end %>
+            </tr>
+        <% end %>
+        <%#一通り終わったら.each doでまた上に   表形式でデータを表示するときによく使う方法%>
+    </tbody>
+</table>
+</body>

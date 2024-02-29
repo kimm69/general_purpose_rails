@@ -1,0 +1,42 @@
+<p class="title">ログイン画面</p>
+
+
+<%= form_with scope: :session, local: true do |f| %>
+<main>
+<% flash.each do |message_type, message| %>
+    <div class="flash-message <%= message_type %>"><%= message %></div>
+<% end %>
+<%= yield %>
+</main>
+<table id="login">
+    <tbody>
+    <tr>
+        <div class="field">
+            <th class="login_email"><%= f.label :email , "メールアドレス"%><br></th>
+            <td class="email_f"><%= f.email_field :email %></td>
+        </div>
+    </tr>
+
+    <tr>
+        <div class="field">
+            <th class="login_pass"><%= f.label :password, "パスワード" %><br></th>
+            <td class="password_f"><%= f.password_field :password%><br></td>
+        </div>
+    </tr>
+</tbody>
+</table>
+    <div class="actions">
+        <a class="btn_action">
+        <%= f.submit'ログイン', class:"b" %>
+    
+
+    <%= link_to new_user_path do %>
+    <button class="b">サインイン</button>
+    <%end%>
+    </div>
+    <footer>
+        <div class="footer">
+          <p class="annotation">オンライン百葉箱は様々な用途に使える汎用webアプリケーションです。<br>(悪用ダメ絶対。お兄さんとの約束だゾ。)</p>
+        </div>
+      </footer>
+<%end%>

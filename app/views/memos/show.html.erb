@@ -1,0 +1,44 @@
+<p class="title">意見の詳細</p>
+<!--<div class="top_button"><%= button_to "新規登録" , memos_path, method: :get %></div>-->
+<table class="table_memo_show">
+    <tbody>
+        <tr>
+        <th class="memo_id"><%= Memo.human_attribute_name(:id) %></th>
+            <td><%= @memo.id %></td>
+            <%#指定されたデータのidカラムに入っているデータ(データID)が表示される%>
+        </tr>
+        <tr>
+            <th><%= Memo.human_attribute_name(:uname) %></th>
+            <td><%= @memo.uname %></td>
+            <%#指定されたデータのnameカラムに入っているデータ(つまり本の名前)が表示される%>
+        </tr>
+        <tr>
+            <th><%= Memo.human_attribute_name(:task) %></th>
+            <td><%= @memo.task %></td>
+        </tr>
+        <tr>
+            <th><%= Memo.human_attribute_name(:when) %></th>
+            <td><%= @memo.when %></td>
+        </tr>
+        <tr>
+            <th><%= Memo.human_attribute_name(:created_at) %></th>
+            <td><%= @memo.created_at %></td>
+        </tr>
+        <tr>
+            <th><%= Memo.human_attribute_name(:updated_at) %></th>
+            <td><%= @memo.updated_at %></td>
+            
+        </tr>
+    </tbody>
+</table>
+
+    <% if current_user.admin? %>
+        <%= button_to "編集", edit_memo_path(@memo), method: :get,class:"edit_btn" %>
+        <%= button_to "削除", @memo, method: :delete,class:"delete_btn" %>
+    <% elsif @memo.user_id == current_user.id %>
+        <div class="actions2"><%= button_to "編集", edit_memo_path(@memo), method: :get %></div>
+        <div class="actions2"><%= button_to "削除", @memo, method: :delete %></div>
+
+
+<% end %>
+

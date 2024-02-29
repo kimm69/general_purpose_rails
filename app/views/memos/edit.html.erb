@@ -1,0 +1,5 @@
+<p class="title">意見の編集</p>
+
+<!--<div class="top_button"><%= button_to "一覧" , memos_path, method: :get %></div>-->
+<%#(book)はこのページでどのデータを編集するか決まっているので必要ない%>
+<%= render partial: "form", locals: {memo: @memo} %>

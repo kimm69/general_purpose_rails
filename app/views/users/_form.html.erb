@@ -1,0 +1,36 @@
+<%= form_with model: user, local: true do |f| %>
+
+<table class="user_table_new">
+    <tbody>
+        <tr>
+            <div class="field">
+                <th class="name_new"><%= f.label :name %><br></th>
+                <td><%= f.text_field :name, class:"name_input" %><br></td>
+                </div>
+        </tr>
+        <tr>
+            <div class="field">
+                <th><%= f.label :email %><br></th>
+                <td><%= f.email_field :email %><br></td>
+                </div>
+        </tr>
+
+        <tr>
+            <div class="field">
+            <th><%= f.label :password %><br></th>
+            <td><%= f.password_field :password %></td>
+                </div>
+        </tr>
+
+        <tr>
+            <div class="field">
+                <th><%= f.label :password_confirmation %><br></th>
+                <td><%= f.password_field :password_confirmation %><br></td>
+                </div>
+        </tr>
+</tbody>
+</table>
+        <div class="actions">
+            <%= f.submit'登録', class:"b" %>
+        </div>
+        <% end %> 

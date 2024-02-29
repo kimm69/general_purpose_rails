@@ -1,0 +1,12 @@
+<p class="title">ユーザーの新規登録</p>
+<% if current_user %>
+    
+
+    <!--<%= link_to users_path do%><button class="top_button">一覧</button><%end%>-->
+<% end %>
+<% if not current_user %>
+      <%= button_to "ログイン画面へ", login_path, method: :get, class:"to_login"%>
+
+    <% end %>
+<%= render partial: "form", locals: {user: @user} %>
+<%# @userをuserとして使う%>

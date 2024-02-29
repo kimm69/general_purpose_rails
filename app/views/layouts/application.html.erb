@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>オンライン百葉箱</title>
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <h1>オンライン百葉箱</h1>
+      <% if not current_user%>
+
+ <% elsif current_user.admin?%>
+    
+      <div class="top_button"> 
+      
+      <%= button_to "意見一覧" , memos_path, method: :get, class: "item_btn" %>
+      <%= button_to "意見の新規登録" , new_memo_path, method: :get, class: "item_btn" %>
+      <%= button_to "ユーザー一覧", users_path, method: :get, class: "item_btn"%>
+      <%= button_to "ユーザーの新規登録", new_user_path, method: :get, class: "item_btn"%>
+      <%= button_to 'ログアウト', logout_path, memthod: :get, method: :delete, class: "item_btn"%>
+     
+    </div>
+
+    <% elsif current_user %>
+      
+      <div class="top_button"> 
+      
+      <%= button_to "意見一覧" , memos_path, method: :get, class: "item_btn"%>
+      <%= button_to "意見の新規登録" , new_memo_path, method: :get, class: "item_btn" %>
+      <%= button_to "ユーザー一覧", users_path, method: :get, class: "item_btn"%>
+      <%= button_to 'ログアウト', logout_path, memthod: :get, method: :delete, class: "item_btn"%>
+     
+    </div>
+   
+  
+
+  
+    <% end %>
+    <%= yield %>
+    
+      
+        
+  </body>
+</html>

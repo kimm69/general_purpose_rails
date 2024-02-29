@@ -1,0 +1,23 @@
+<%= form_with model: memo, local: true do |f| %>
+<table>
+    <tbody>
+    <tr>
+        <div class="field">
+        <th class="task_new"><%= f.label :task %><br></th>
+        <td><%= f.text_area :task, placeholder:"意見を入力してください"%><br></td>
+        </div>
+    </tr>
+
+    <tr>
+        <div class="field">
+            <th><%= f.label :when %><br></th>
+            <td><%= f.date_field :when %><br></td>
+        </div>
+    </tr>
+</tbody>
+</table>
+
+    <div class="actions">
+        <%= f.submit '登録', class: 'b'%>
+    </div>
+<% end %>

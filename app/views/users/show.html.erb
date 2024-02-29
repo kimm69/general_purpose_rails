@@ -1,0 +1,38 @@
+<p class="title">ユーザーの詳細</p>
+<!--<%= link_to users_path do%><button class=index_button>一覧</button><%end%>-->
+
+<table class="user_show">
+    <tbody>
+        <tr>
+            <th><%= User.human_attribute_name(:id) %></th>
+            <td><%= @user.id %></td>
+            <%#指定されたデータのidカラムに入っているデータ(データID)が表示される%>
+        </tr>
+        <tr>
+            <th><%= User.human_attribute_name(:name) %></th>
+            <td><%= @user.name %></td>
+            <%#指定されたデータのnameカラムに入っているデータ(つまり本の名前)が表示される%>
+        </tr>
+        <tr>
+            <th><%= User.human_attribute_name(:email) %></th>
+            <td><%= @user.email %></td>
+        </tr>
+        <tr>
+            <th><%= User.human_attribute_name(:created_at) %></th>
+            <td><%= @user.created_at %></td>
+
+        <tr>
+            <th><%= User.human_attribute_name(:updated_at) %></th>
+            <td><%= @user.updated_at %></td>
+            
+        </tr>
+    </tbody>
+</table>
+    <% if current_user.admin? %>
+        <%= button_to "編集", edit_user_path, method: :get, class:"edit_btn"%>
+        <%= button_to "削除", @user, method: :delete, class:"delete_btn"%>
+    <% elsif @user.id == current_user.id %>
+        <%= button_to "編集", edit_user_path, method: :get, class:"edit_btn"%>
+        <%= button_to "削除", @user, method: :delete, class:"delete_btn"%>
+</div>
+<% end %>

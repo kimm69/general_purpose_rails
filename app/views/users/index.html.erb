@@ -1,0 +1,42 @@
+<p class="title">ユーザー一覧</p>
+<!--<%= link_to new_user_path do%><button class="top_button">新規登録</button><%end%>-->
+<%#新規登録という名前でnewアクションを呼び出す%>
+<body>
+<table class="user_table">
+    <thread>
+        <tr>
+            <th class="name_user"><%= User.human_attribute_name(:name) %></th>
+            <th class="email"><%= User.human_attribute_name(:email) %></th> 
+            <th class="permit"><%= User.human_attribute_name(:permit) %></th>
+        </tr>
+    </thread>
+
+    <tbody>
+        <% @users.each do |user| %>
+
+            <tr>
+
+                <td><%= link_to user.name, user %></td>
+
+                <td><%= user.email %></td>
+                
+                <% if user.admin == true%>
+                  <td>管理者</td>
+                <% else %>
+                  <td></td>
+                <% end%>
+
+            <% if current_user.admin? %>  
+                <td><%= button_to "編集", edit_user_path(user), method: :get, class:"edit_delete_btn" %></td>
+                <td><%= button_to "削除", user, method: :delete, class:"edit_delete_btn" %></td> 
+            <% elsif user.id == current_user.id %>
+                <td><%= button_to "編集", edit_user_path(user), method: :get, class:"edit_delete_btn" %></td>
+                <td><%= button_to "削除", user, method: :delete, class:"edit_delete_btn" %></td> 
+                <%# method: delete は削除を行う -> destroyアクションを行う %>
+            <% end %>
+            </tr>
+        <% end %>
+        <%#一通り終わったら.each doでまた上に   表形式でデータを表示するときによく使う方法%>
+    </tbody>
+</table>
+</body>
